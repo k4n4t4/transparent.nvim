@@ -20,7 +20,6 @@ M.default_groups = {
     "EndOfBuffer",
 }
 M.default_events = {
-    "VimEnter",
     "ColorScheme",
 }
 
@@ -91,14 +90,16 @@ function M.setup(opts)
     M.events = opts.events or vim.deepcopy(M.default_events)
 
     local augroup = vim.api.nvim_create_augroup("Transparent", { clear = true })
-    vim.api.nvim_create_autocmd(M.events, {
-        group = augroup,
-        callback = function()
-            if not M.enabled then return end
-            M.save_hl()
-            M.apply_transparent()
-        end,
-    })
+    if M.events and #M.events > 0 then
+        vim.api.nvim_create_autocmd(M.events, {
+            group = augroup,
+            callback = function()
+                if not M.enabled then return end
+                M.save_hl()
+                M.apply_transparent()
+            end,
+        })
+    end
 
     vim.api.nvim_create_user_command("TransparentEnable", M.enable, { desc = "Enable transparent background" })
     vim.api.nvim_create_user_command("TransparentDisable", M.disable, { desc = "Disable transparent background" })
