@@ -95,6 +95,7 @@ function M.setup(opts)
             group = augroup,
             callback = function()
                 if not M.enabled then return end
+                print(10)
                 M.save_hl()
                 M.apply_transparent()
             end,
