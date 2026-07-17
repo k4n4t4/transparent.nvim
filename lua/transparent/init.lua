@@ -94,8 +94,8 @@ function M.setup(opts)
         vim.api.nvim_create_autocmd(M.events, {
             group = augroup,
             callback = function()
+                print(#M.events)
                 if not M.enabled then return end
-                print(10)
                 M.save_hl()
                 M.apply_transparent()
             end,
