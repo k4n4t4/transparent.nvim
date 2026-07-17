@@ -18,6 +18,7 @@ M.default_groups = {
     "SignColumn",
     "CursorLineSign",
     "EndOfBuffer",
+    "Pmenu",
 }
 M.default_events = {
     "ColorScheme",
