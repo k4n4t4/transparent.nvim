@@ -18,6 +18,10 @@ M.default_groups = {
     "SignColumn",
     "CursorLineSign",
     "EndOfBuffer",
+
+    "VertSplit",
+    "WinSeparator",
+    "FloatBorder",
 }
 M.default_events = {
     "ColorScheme",
