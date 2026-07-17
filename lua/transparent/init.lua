@@ -18,7 +18,6 @@ M.default_groups = {
     "SignColumn",
     "CursorLineSign",
     "EndOfBuffer",
-    "Pmenu",
 }
 M.default_events = {
     "ColorScheme",
@@ -35,8 +34,8 @@ end
 
 function M.apply_transparent()
     for _, name in ipairs(M.groups) do
-        local current = vim.api.nvim_get_hl(0, { name = name })
-        vim.api.nvim_set_hl(0, name, vim.tbl_extend("force", current, { bg = "none" }))
+        local current = vim.api.nvim_get_hl(0, { name = name, link = false })
+        vim.api.nvim_set_hl(0, name, vim.tbl_extend("force", current, { bg = "NONE" }))
     end
 end
 
