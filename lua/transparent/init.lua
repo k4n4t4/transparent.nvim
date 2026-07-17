@@ -91,15 +91,20 @@ function M.setup(opts)
 
     local augroup = vim.api.nvim_create_augroup("Transparent", { clear = true })
     if M.events and #M.events > 0 then
+        print("Setting up transparent background for events: " .. table.concat(M.events, ", "))
         vim.api.nvim_create_autocmd(M.events, {
             group = augroup,
             callback = function()
-                print(#M.events)
                 if not M.enabled then return end
                 M.save_hl()
                 M.apply_transparent()
             end,
         })
+    else
+        print("No events specified for transparent background. Please provide events in the setup configuration.")
+        for _, event in ipairs(M.events) do
+            print("Event: " .. event)
+        end
     end
 
     vim.api.nvim_create_user_command("TransparentEnable", M.enable, { desc = "Enable transparent background" })
