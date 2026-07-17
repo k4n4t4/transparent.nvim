@@ -97,9 +97,6 @@ function M.setup(opts)
                 M.apply_transparent()
             end,
         })
-    else
-        print(M.events)
-        print(#M.events)
     end
 
     vim.api.nvim_create_user_command("TransparentEnable", M.enable, { desc = "Enable transparent background" })
