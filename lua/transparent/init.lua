@@ -19,6 +19,15 @@ M.default_groups = {
     "CursorLineSign",
     "EndOfBuffer",
 
+    "StatusLine",
+    "StatusLineNC",
+    "StatusLineTerm",
+    "StatusLineTermNC",
+
+    "TabLine",
+    "TabLineFill",
+    "TabLineSel",
+
     "VertSplit",
     "WinSeparator",
     "FloatBorder",
