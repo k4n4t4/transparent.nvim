@@ -45,10 +45,11 @@ function M.save_hl()
     end
 end
 
-function M.apply_transparent()
+function M.apply_transparent(custom_bg)
+    local bg = custom_bg or M.custom_bg or "NONE"
     for _, name in ipairs(M.groups) do
         local current = vim.api.nvim_get_hl(0, { name = name, link = false })
-        vim.api.nvim_set_hl(0, name, vim.tbl_extend("force", current, { bg = "NONE" }))
+        vim.api.nvim_set_hl(0, name, vim.tbl_extend("force", current, { bg = bg }))
     end
 end
 
@@ -100,6 +101,10 @@ function M.setup(opts)
         M.events = vim.deepcopy(M.default_events)
     end
 
+    if opts.custom_bg then
+        M.custom_bg = opts.custom_bg
+    end
+
     local augroup = vim.api.nvim_create_augroup("Transparent", { clear = true })
     if M.events and #M.events > 0 then
         vim.api.nvim_create_autocmd(M.events, {
@@ -107,7 +112,7 @@ function M.setup(opts)
             callback = function()
                 if not M.enabled then return end
                 M.save_hl()
-                M.apply_transparent()
+                M.apply_transparent(M.custom_bg)
             end,
         })
     end
